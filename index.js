@@ -69,20 +69,21 @@ class Player extends React.Component {
     async guessNumber() { // Fun([], UInt)
         //set the component state to display Guess Number dialog,
         // and wait for a Promise which can be resolved via user interaction
-      const guessNumber = await new Promise(resolveNumber => {
+      const guess = await new Promise(resolveNumber => {
         this.setState({view: 'GuessNumber', playable: true, resolveNumber});
       });
-      return guessNumber;
+      this.setState({view: 'DoneForPlayNum', guess});
+      return guess;
     }
     async giveNumber() { //    Fun([], UInt)
         //set the component state to display Give Number dialog,
         // and wait for a Promise which can be resolved via user interaction
-      const giveNumber = await new Promise(resolveNumber => {
+      const number = await new Promise(resolveNumber => {
         this.setState({view: 'GiveNumber', playable: true, resolveNumber});
       });
       //set the component state to display Waiting for results
-      this.setState({view: 'WaitingForResults', giveNumber});
-      return giveNumber;
+      this.setState({view: 'WaitingForResults', number});
+      return number;
     }
     //set the component state to display Done
     seeOutcome(i) { this.setState({view: 'Done', outcome: intToOutcome[i]}); }
@@ -92,6 +93,7 @@ class Player extends React.Component {
     informDraw(){ this.setState({view: 'Draw'})}
     //define what happens when user clicks 0,1,2,3,4,5,6,7,8,9,10
     playMorra(number) { this.state.resolveNumber(number); }
+    playGuest(guess) {this.state.resolveNumber(guess); }
   }
 
   class Deployer extends Player {
