@@ -136,5 +136,13 @@ exports.Timeout = class extends React.Component {
     );
   }
 }
-
+exports.Draw = class extends React.Component {
+  render() {
+    return (
+      <div>
+        Just now is a DRAW! So lets start over...
+      </div>
+    );
+  }
+}
 export default exports;

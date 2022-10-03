@@ -67,7 +67,7 @@ class Player extends React.Component {
     random() { return reach.hasRandom.random(); }
     //provide getHand callback
     async guessNumber() { // Fun([], UInt)
-        //set the component state to display Get hand dialog,
+        //set the component state to display Guess Number dialog,
         // and wait for a Promise which can be resolved via user interaction
       const guessNumber = await new Promise(resolveNumber => {
         this.setState({view: 'GuessNumber', playable: true, resolveNumber});
@@ -75,7 +75,7 @@ class Player extends React.Component {
       return guessNumber;
     }
     async giveNumber() { //    Fun([], UInt)
-        //set the component state to display Get hand dialog,
+        //set the component state to display Give Number dialog,
         // and wait for a Promise which can be resolved via user interaction
       const giveNumber = await new Promise(resolveNumber => {
         this.setState({view: 'GiveNumber', playable: true, resolveNumber});
@@ -88,6 +88,8 @@ class Player extends React.Component {
     seeOutcome(i) { this.setState({view: 'Done', outcome: intToOutcome[i]}); }
     //set the component state to display Timeout
     informTimeout() { this.setState({view: 'Timeout'}); }
+    //set the component state to display Draw
+    informDraw(){ this.setState({view: 'Draw'})}
     //define what happens when user clicks 0,1,2,3,4,5,6,7,8,9,10
     playMorra(number) { this.state.resolveNumber(number); }
   }
